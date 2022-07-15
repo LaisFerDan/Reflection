@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 
 namespace Reflection
 {
@@ -32,7 +27,7 @@ namespace Reflection
             Console.WriteLine($"Usando reflexão, descobri que tenho {propertyInfos.Length} propriedades públicas:");
             foreach (var propertyInfo in propertyInfos)
             {
-                Console.WriteLine($" - {propertyInfo.Name}, do tipo '{propertyInfo.PropertyType.Name}', com valor '{propertyInfo.GetValue(student)}'.");
+                Console.WriteLine($" - {propertyInfo.Name}, do tipo '{propertyInfo.PropertyType.Name}'.");
             }
         }
 
@@ -62,13 +57,9 @@ namespace Reflection
             MethodInfo[] methodInfos = student.GetType().GetMethods();
             foreach (MethodInfo methodInfo in methodInfos)
             {
-                ParameterInfo[] parameterInfos = methodInfo.GetParameters();
-                if (methodInfo.Name.Equals("DisplayPublicProperties", StringComparison.Ordinal) &&
-                    parameterInfos[0].ParameterType == typeof(Student))
+                if (methodInfo.Name.Equals("DisplayInfo", StringComparison.Ordinal))
                 {
-                    var args = new object[1];
-                    args[0] = student;
-                    methodInfo.Invoke(student, args);
+                    methodInfo.Invoke(student, null);
                 }
             }
         }

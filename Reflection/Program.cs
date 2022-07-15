@@ -7,6 +7,8 @@ namespace Reflection
         static void Main(string[] args)
         {
             Student student = new Student();
+            student.DisplayPublicProperties(student);
+            Console.WriteLine();
             student.CreateInstance();
         }
     }
